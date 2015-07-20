@@ -11,6 +11,15 @@
     "angular-loader": "~1.4.0",
     "angular-mocks": "~1.4.0",
     "html5-boilerplate": "~5.2.0",
-    "angular-material": "~0.10.0"
+    "angular-material": "~0.10.0",
+    "videogular": "~1.2.4",
+    "videogular-themes-default": "~1.2.4",
+    "videogular-controls": "~1.2.4",
+    "videogular-buffering": "~1.2.4",
+    "videogular-overlay-play": "~1.2.4",
+    "videogular-poster": "~1.2.4",
+    "videogular-ima-ads": "~1.2.4",
+    "videogular-angulartics": "~1.2.4",
+    "angular-sanitize": "~1.4.3"
   }
 }

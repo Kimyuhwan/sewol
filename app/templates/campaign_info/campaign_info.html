@@ -1,8 +1,49 @@
-<div ng-controller="CampaignInfoController as campaigninfoCtrl" layout="column" flex layout-fill>
-  <md-content layout-padding style="height:600px;">
-    <section>
-      <md-subheader class="md-primary">Campaign Title</md-subheader>
+<div ng-controller="CampaignInfoController as campaigninfoCtrl" layout="column" flex class="videogular-container">
+
+  <md-content >    
+      <md-list-item class="md-2-line" layout-padding>
+        <img class="md-avatar" src="http://placehold.it/80x80">
+        <div class="md-list-item-text" layout-align="start end">
+          <h3>Campaign Title</h3>              
+          <h4>Yuhwan Kim</h4>
+        </div>
+      </md-list-item>
+      <md-divider></md-divider>            
+      <div layout-padding>
+        <videogular vg-theme="campaigninfoCtrl.config.theme" >
+          <vg-media vg-src="campaigninfoCtrl.config.sources"
+              vg-tracks="campaigninfoCtrl.config.tracks">
+          </vg-media>
+
+          <vg-controls>
+            <vg-play-pause-button></vg-play-pause-button>
+            <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+            <vg-scrub-bar>
+              <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+            </vg-scrub-bar>
+            <vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+            <vg-volume>
+              <vg-mute-button></vg-mute-button>
+              <vg-volume-bar></vg-volume-bar>
+            </vg-volume>
+            <vg-fullscreen-button></vg-fullscreen-button>
+          </vg-controls>
+
+          <vg-overlay-play></vg-overlay-play>
+          <vg-poster vg-url='controller.config.plugins.poster'></vg-poster>
+        </videogular>  
+
+        <div layout="row" layout-padding>
+          <p>
+          {{campaignlistCtrl.campaigns.msg}}
+          The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+          two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+          </p>
+        </div>     
+      </div> 
+      <md-divider></md-divider>            
+
       
-    </section>
+    
   </md-content>
 </div>

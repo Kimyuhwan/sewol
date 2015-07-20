@@ -2,15 +2,31 @@
 
 angular.module('myApp.campaign_info', ['ngRoute','ngMaterial'])
 
-.controller('CampaignInfoController', function($scope, $http, $location) {
+.controller('CampaignInfoController', function($scope, $http, $location, $sce) {
 	var campaign = this;  	
 
 	$scope.goNext = function (next) {
 		$location.path(next);
 	}
 
-  // $http.get('https://demo1697037.mockable.io/test_message').success(function(data) {
-  // 	console.log(data);
-  //   campaign.campaigns = data;
-  // });
+	this.config = {
+		sources: [
+			{src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.mp4"), type: "video/mp4"},
+			{src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.webm"), type: "video/webm"},
+			{src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.ogg"), type: "video/ogg"}
+		],
+		tracks: [
+			{
+				src: "http://www.videogular.com/assets/subs/pale-blue-dot.vtt",
+				kind: "subtitles",
+				srclang: "en",
+				label: "English",
+				default: ""
+			}
+		],
+		theme: "bower_components/videogular-themes-default/videogular.css",
+		plugins: {
+			poster: "http://www.videogular.com/assets/images/videogular.png"
+		}
+	};
 });

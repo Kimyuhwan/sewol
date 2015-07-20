@@ -4,12 +4,18 @@
 angular.module('myApp', [
   'ngRoute',
   'ngMaterial',
+  "ngSanitize",
   // templates
   'myApp.campaign_list',  
   'myApp.campaign_info',
   'myApp.icon',
   // version
-  'myApp.version'
+  'myApp.version',
+  //video
+  "com.2fdevs.videogular",
+  "com.2fdevs.videogular.plugins.controls",
+  "com.2fdevs.videogular.plugins.overlayplay",
+  "com.2fdevs.videogular.plugins.poster"
 ])
 
 
@@ -27,7 +33,7 @@ angular.module('myApp', [
     templateUrl: 'templates/icon/icon.html',
     controller: 'iconCtrl'
   });
-  $routeProvider.otherwise({redirectTo: '/campaign_info'});
+  $routeProvider.otherwise({redirectTo: '/campaign_list'});
 
   /// mdThemingProvider ///
   $mdThemingProvider.theme('default')
