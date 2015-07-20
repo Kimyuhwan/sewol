@@ -1,0 +1,32 @@
+<div ng-controller="CampaignListController as campaignlistCtrl">
+  <md-content class="md-padding">      
+    <div ng-repeat="item in messages">
+      <md-card ng-click='goNext(item.next)'>        
+          <div layout="column">
+            <div layout="row" layout-wrap>
+              <md-list-item class="md-3-line" >
+                <img class="md-avatar" src="http://placehold.it/80x80" style="width: 70px; height:70px">
+                <div class="md-list-item-text" layout-align="start end">
+                  <h3>{{item.what}}</h3>              
+                  <h4>{{item.who}}</h4>
+                  <h4>{{item.when}}</h4>
+                  <div layout="row" layout-align="end end" layout-wrap>
+                     <i class="material-icons">people</i> &nbsp; 300 
+                  </div>
+                </div>              
+                <md-divider></md-divider>
+              </md-list-item>
+            </div>
+            <div layout="row" layout-padding>
+              <p>
+              {{campaignlistCtrl.campaigns.msg}}
+              The titles of Washed Out's breakthrough song and the first single from Paracosm share the
+              two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+              </p>
+            </div>
+          </div>              
+      </md-card>
+      <br/>   
+    </div> 
+  </md-content>
+</div>
