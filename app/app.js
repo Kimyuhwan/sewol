@@ -5,6 +5,8 @@ angular.module('myApp', [
   'ngRoute',
   'ngMaterial',
   "ngSanitize",
+  // map
+  'angular-mapbox',
   // templates
   'myApp.campaign_list',  
   'myApp.campaign_info',
@@ -18,8 +20,8 @@ angular.module('myApp', [
   "com.2fdevs.videogular.plugins.poster"
 ])
 
-
 .config(['$routeProvider','$mdThemingProvider', function($routeProvider, $mdThemingProvider) {  
+
   /// routeProvider ///
   $routeProvider.when('/campaign_list', {
     templateUrl: 'templates/campaign_list/campaign_list.html',
@@ -33,13 +35,15 @@ angular.module('myApp', [
     templateUrl: 'templates/icon/icon.html',
     controller: 'iconCtrl'
   });
-  $routeProvider.otherwise({redirectTo: '/campaign_list'});
+  $routeProvider.otherwise({redirectTo: '/campaign_info'});
 
   /// mdThemingProvider ///
   $mdThemingProvider.theme('default')
           .primaryPalette('light-blue')
           .accentPalette('green')
           .warnPalette('blue');
+
+
 
 }]);
 

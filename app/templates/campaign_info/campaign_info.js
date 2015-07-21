@@ -2,7 +2,7 @@
 
 angular.module('myApp.campaign_info', ['ngRoute','ngMaterial'])
 
-.controller('CampaignInfoController', function($scope, $http, $location, $sce) {
+.controller('CampaignInfoController', function($scope, $http, $location, $sce, mapboxService) {
 	var campaign = this;  	
 
 	$scope.goNext = function (next) {
@@ -29,4 +29,6 @@ angular.module('myApp.campaign_info', ['ngRoute','ngMaterial'])
 			poster: "http://www.videogular.com/assets/images/videogular.png"
 		}
 	};
+
+	mapboxService.init({ accessToken: 'pk.eyJ1IjoibGljeWV1cyIsImEiOiJuZ1gtOWtjIn0.qaaGvywaJ_kCmwmlTSNyVw' });
 });
