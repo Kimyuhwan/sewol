@@ -1,0 +1,32 @@
+<md-dialog aria-label="캠페인 참여">
+  <form>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>캠페인 참여</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="answer('not applicable')">
+        <md-icon md-font-icon="ion-close-round" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-dialog-content>
+    <div layout="column" layout-align="center center">
+       <div layout="column" layout-sm="column" layout-align="space-around center" layout-padding>
+          <p class="md-body-2">아래 시작 버튼을 누른 후,<br/><b>5초간</b> 스마트폰을 들고 제스처를 하세요.</p>
+          <md-button md-no-ink class="md-primary">{{state_message}}</md-button>
+          <br/>
+          <md-progress-linear class="md-warn" md-mode="buffer" value="{{determinateValue}}" md-buffer-value="{{determinateValue2}}">
+          </md-progress-linear>
+        </div>
+    </div>
+  </md-dialog-content>
+  <div class="md-actions" layout="row" layout-align="center end">    
+    <md-button ng-click="startCount()" class="md-primary">
+     시작
+    </md-button>
+    <md-button ng-disabled="isComplete" ng-click="answer('useful')" class="md-warn">
+      완료
+    </md-button>
+  </div>
+  </form>
+</md-dialog>

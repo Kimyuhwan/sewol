@@ -1,0 +1,26 @@
+<div ng-controller="CampaignJoinController as campaignjoinCtrl" layout="column" flex class="videogular-container" layout-fill>
+
+  <md-content>    
+    <md-list-item class="md-2-line" layout-padding>
+        <img class="md-avatar" src="http://placehold.it/80x80">
+        <div class="md-list-item-text" layout-align="start end">
+          <h3>Campaign Title</h3>              
+          <h4>Yuhwan Kim</h4>
+        </div>
+      </md-list-item>
+      <md-divider></md-divider> 
+      <div layout="row" layout-padding>
+      	<img src="http://placehold.it/400x250">
+      </div>	      
+      <md-divider></md-divider> 
+	   	<section layout="column" layout-align="center center">	   		   
+		       <md-button class="md-raised md-primary" ng-click='showAdvanced($event)'>제스처 시작</md-button>		       
+	   </section>   
+	   <div ng-if="alert">
+	    <br/>
+	    <b layout="row" layout-align="center center" class="md-padding">
+	      {{alert}}
+	    </b>
+	  </div>
+  </md-content>
+</div>

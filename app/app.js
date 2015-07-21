@@ -7,9 +7,12 @@ angular.module('myApp', [
   "ngSanitize",
   // map
   'angular-mapbox',
+  // floating button
+  'ng-mfb',
   // templates
   'myApp.campaign_list',  
   'myApp.campaign_info',
+  'myApp.campaign_join',
   'myApp.icon',
   // version
   'myApp.version',
@@ -30,6 +33,10 @@ angular.module('myApp', [
   $routeProvider.when('/campaign_info', {
     templateUrl: 'templates/campaign_info/campaign_info.html',
     controller: 'CampaignInfoController'
+  });
+  $routeProvider.when('/campaign_join', {
+    templateUrl: 'templates/campaign_join/campaign_join.html',
+    controller: 'CampaignJoinController'
   });
   $routeProvider.when('/icon', {
     templateUrl: 'templates/icon/icon.html',

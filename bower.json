@@ -21,6 +21,7 @@
     "videogular-ima-ads": "~1.2.4",
     "videogular-angulartics": "~1.2.4",
     "angular-sanitize": "~1.4.3",
-    "angular-mapbox": "~0.1.4"
+    "angular-mapbox": "~0.1.4",
+    "ng-mfb": "~0.6.1"
   }
 }
