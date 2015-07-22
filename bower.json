@@ -22,6 +22,7 @@
     "videogular-angulartics": "~1.2.4",
     "angular-sanitize": "~1.4.3",
     "angular-mapbox": "~0.1.4",
-    "ng-mfb": "~0.6.1"
+    "ng-mfb": "~0.6.1",
+    "angular-local-storage": "~0.2.2"
   }
 }

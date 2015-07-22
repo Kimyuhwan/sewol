@@ -5,6 +5,8 @@ angular.module('myApp', [
   'ngRoute',
   'ngMaterial',
   "ngSanitize",
+  // local storage
+  'LocalStorageModule',
   // map
   'angular-mapbox',
   // floating button
@@ -23,7 +25,7 @@ angular.module('myApp', [
   "com.2fdevs.videogular.plugins.poster"
 ])
 
-.config(['$routeProvider','$mdThemingProvider', function($routeProvider, $mdThemingProvider) {  
+.config(['$routeProvider','$mdThemingProvider', 'localStorageServiceProvider', function($routeProvider, $mdThemingProvider, localStorageServiceProvider) {  
 
   /// routeProvider ///
   $routeProvider.when('/campaign_list', {
@@ -49,8 +51,12 @@ angular.module('myApp', [
           .primaryPalette('light-blue')
           .accentPalette('green')
           .warnPalette('blue');
-
-
+  
+  // local storage setting
+  localStorageServiceProvider
+    .setPrefix('myApp')
+    .setStorageType('sessionStorage')
+    .setNotify(true, true)
 
 }]);
 
