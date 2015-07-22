@@ -49,6 +49,7 @@ function DialogController($scope, $mdDialog, $interval, $mdToast, $window, local
   
 
   $scope.startRecording = function() {
+  	recordedMotion = [];
 
   	if ($window.DeviceMotionEvent) {	  	  
 	  // register startRecordingGesture
@@ -122,11 +123,12 @@ function DialogController($scope, $mdDialog, $interval, $mdToast, $window, local
   	  $scope.isComplete = false;  
 
   	  // test 
+  	  var cost = DTW(testMotion, recordedMotion);
   	  $mdToast.show(
 	  	$mdToast.simple()
-	 		.content(testMotion[0] + " , " + recordedMotion[0])
+	 		.content(cost)
 			.hideDelay(3000)
-	  );	
+	  );
   };
 
   $scope.storeMotionData = function(ev) { 	
@@ -134,14 +136,15 @@ function DialogController($scope, $mdDialog, $interval, $mdToast, $window, local
 	var accel_x = ev.acceleration.x;
   	var accel_y = ev.acceleration.y;
   	var accel_z = ev.acceleration.z;
-  	recordedMotion.push( Math.sqrt(Math.pow(accel_x, 2) + Math.pow(accel_y, 2) + Math.pow(accel_z, 2)) );
+ 	recordedMotion.push( Math.sqrt(Math.pow(accel_x, 2) + Math.pow(accel_y, 2) + Math.pow(accel_z, 2)) );
+
 
   	// If you want to check accel value, use following code	
-  	// $scope.$apply(function() {
-  	// 	var accel_x = ev.acceleration.x;
-	// 	var accel_y = ev.acceleration.y;
-	// 	var accel_z = ev.acceleration.z;
-	// 	$scope.accel_x = Math.sqrt(Math.pow(accel_x, 2) + Math.pow(accel_y, 2) + Math.pow(accel_z, 2));
+  // 	$scope.$apply(function() {
+  // 		var accel_x = ev.acceleration.x;
+		// var accel_y = ev.acceleration.y;
+		// var accel_z = ev.acceleration.z;
+		// $scope.accel_x = Math.sqrt(Math.pow(accel_x, 2) + Math.pow(accel_y, 2) + Math.pow(accel_z, 2));
   	// });
   	// 
 	
@@ -161,6 +164,87 @@ function DialogController($scope, $mdDialog, $interval, $mdToast, $window, local
   function removeItem(key) {
    return localStorageService.remove(key);
   }
+
+  // gesture similarity
+    function DTW(firstSequence, secondSequence) {
+
+	    var state = { 
+	        distanceCostMatrix: null,
+	        distance: function (x, y) {
+	            var difference = x - y;
+	            var squaredEuclideanDistance = difference * difference;
+	            return squaredEuclideanDistance;
+	        }
+	    };
+
+	    var cost = Number.POSITIVE_INFINITY;        
+	    cost = computeOptimalPath(firstSequence, secondSequence, state);
+	    return cost;
+
+	};
+
+	function computeOptimalPath(s, t, state) {
+	    var start = new Date().getTime();
+	    state.m = s.length;
+	    state.n = t.length;
+	    var distanceCostMatrix = createMatrix(state.m, state.n, Number.POSITIVE_INFINITY);
+
+	    distanceCostMatrix[0][0] = state.distance(s[0], t[0]);
+
+	    for (var rowIndex = 1; rowIndex < state.m; rowIndex++) {
+	        var cost = state.distance(s[rowIndex], t[0]);
+	        distanceCostMatrix[rowIndex][0] = cost + distanceCostMatrix[rowIndex - 1][0];
+	    }
+
+	    for (var columnIndex = 1; columnIndex < state.n; columnIndex++) {
+	        var cost = state.distance(s[0], t[columnIndex]);
+	        distanceCostMatrix[0][columnIndex] = cost + distanceCostMatrix[0][columnIndex - 1];
+	    }
+
+	    for (var rowIndex = 1; rowIndex < state.m; rowIndex++) {
+	        for (var columnIndex = 1; columnIndex < state.n; columnIndex++) {
+	            var cost = state.distance(s[rowIndex], t[columnIndex]);
+	            distanceCostMatrix[rowIndex][columnIndex] =
+	                cost + Math.min(
+	                    distanceCostMatrix[rowIndex - 1][columnIndex],          // Insertion
+	                    distanceCostMatrix[rowIndex][columnIndex - 1],          // Deletion
+	                    distanceCostMatrix[rowIndex - 1][columnIndex - 1]);     // Match
+	        }
+	    }
+
+	    var end = new Date().getTime();
+	    var time = end - start;
+
+	    state.distanceCostMatrix = distanceCostMatrix;
+	    state.similarity = distanceCostMatrix[state.m - 1][state.n - 1];
+	    return state.similarity;
+	}
+
+	function createMatrix(m, n, value) {
+	    var matrix = [];
+	    for (var rowIndex = 0; rowIndex < m; rowIndex++) {
+	        matrix.push(createArray(n, value));
+	    }
+
+	    return matrix;
+	};
+
+	function createArray(length, value) {
+	    if (typeof length !== 'number') {
+	        throw new TypeError('Invalid length type');
+	    }
+
+	    if (typeof value === 'undefined') {
+	        throw new Error('Invalid value: expected a value to be provided');
+	    }
+
+	    var array = new Array(length);
+	    for (var index = 0; index < length; index++) {
+	        array[index] = value;
+	    }
+
+	    return array;
+	};
   
 };
 

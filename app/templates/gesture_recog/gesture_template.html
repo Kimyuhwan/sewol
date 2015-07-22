@@ -12,9 +12,9 @@
   <md-dialog-content>
     <div layout="column" layout-align="center center">
        <div layout="column" layout-sm="column" layout-align="space-around center" layout-padding>
-          <p class="md-body-2">아래 시작 버튼을 누른 후,<br/><b>5초간</b> 스마트폰을 들고 제스처를 하세요.</p>          
-          accel: {{accel_x}}
+          <p class="md-body-2">아래 시작 버튼을 누른 후,<br/><b>5초간</b> 스마트폰을 들고 제스처를 하세요.</p>                    
           <md-button md-no-ink class="md-primary">{{state_message}}</md-button>
+          {{accel_x}}
           <br/>
           <md-progress-linear class="md-warn" md-mode="buffer" value="{{determinateValue}}" md-buffer-value="{{determinateValue2}}">
           </md-progress-linear>
